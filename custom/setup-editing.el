@@ -235,8 +235,17 @@ Position the cursor at it's beginning, according to the current mode."
 (setq sp-highlight-wrap-tag-overlay nil)
 
 
-(add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
-(add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
+(add-hook 'prog-mode-hook 'turn-on-smartparens-mode)
+(add-hook 'markdown-mode-hook 'turn-on-smartparens-mode)
+
+(defun my-open-block-mode (id action context)
+  (newline)
+  (indent-according-to-mode)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+
+(sp-local-pair 'prog-mode "{" nil :post-handlers '((my-open-block-mode "RET")))
 
 (require 'clean-aindent-mode)
 (add-hook 'prog-mode-hook 'clean-aindent-mode)

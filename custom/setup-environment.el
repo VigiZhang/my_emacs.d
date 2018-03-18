@@ -81,3 +81,9 @@
 
 (golden-ratio-mode)
 
+(semantic-mode 1)
+
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
+(global-semantic-idle-summary-mode 1)
+(global-semantic-stickyfunc-mode 1)

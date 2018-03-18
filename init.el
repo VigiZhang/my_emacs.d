@@ -30,7 +30,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rainbow-mode discover-my-major atom-one-dark-theme highlight-symbol highlight-numbers golden-ratio nyan-mode magit diff-hl vlf ztree recentf-ext helm-descbinds helm-projectile helm projectile ibuffer-vc expand-region company yasnippet undo-tree clean-aindent-mode smartparens volatile-highlights duplicate-thing workgroups2)))
+    (stickyfunc-enhance function-args helm-gtags rainbow-mode discover-my-major atom-one-dark-theme highlight-symbol highlight-numbers golden-ratio nyan-mode magit diff-hl vlf ztree recentf-ext helm-descbinds helm-projectile helm projectile ibuffer-vc expand-region company yasnippet undo-tree clean-aindent-mode smartparens volatile-highlights duplicate-thing workgroups2)))
  '(save-place nil)
  '(save-place-mode nil))
 (custom-set-faces

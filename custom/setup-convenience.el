@@ -25,7 +25,7 @@
  )
 
 ;; GROUP: Convenience -> HL Line
-;(global-hl-line-mode)
+(global-hl-line-mode)
 
 ;; GROUP: Convenience -> Ibuffer
 (setq ibuffer-use-other-window t) ;; always display ibuffer in another window
