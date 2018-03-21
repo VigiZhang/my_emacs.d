@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (stickyfunc-enhance vlf tree-diff recentf-ext highlight-numbers highlight-symbol golden-ratio clean-aindent-mode yasnippet helm-ag helm-descbinds helm-projectile helm vkill exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window))))
+    (function-args helm-gtags dumb-jump stickyfunc-enhance vlf tree-diff recentf-ext highlight-numbers highlight-symbol golden-ratio clean-aindent-mode yasnippet helm-ag helm-descbinds helm-projectile helm vkill exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -17,7 +17,7 @@
 ;;; Customize
 ;;
 
-(prelude-require-packages '(yasnippet clean-aindent-mode golden-ratio highlight-symbol highlight-numbers recentf-ext vlf stickyfunc-enhance))
+(prelude-require-packages '(yasnippet clean-aindent-mode golden-ratio highlight-symbol highlight-numbers recentf-ext vlf stickyfunc-enhance helm-gtags function-args))
 
 ;; backup files
 ;; (defvar backup-directory "~/.backups")
@@ -170,3 +170,35 @@
 (require 'recentf-ext)
 
 (require 'vlf)
+
+(global-set-key (kbd "C-o") 'crux-smart-open-line)
+(global-set-key (kbd "M-o") 'crux-smart-open-line-above)
+
+(require 'helm-gtags)
+
+(setq
+ helm-gtags-ignore-case t
+ helm-gtags-auto-update t
+ helm-gtags-use-input-at-cursor t
+ helm-gtags-pulse-at-cursor t
+ helm-gtags-prefix-key "\C-cg"
+ helm-gtags-suggested-key-mapping t
+ )
+
+;; Enable helm-gtags-mode
+(add-hook 'dired-mode-hook 'helm-gtags-mode)
+(add-hook 'eshell-mode-hook 'helm-gtags-mode)
+(add-hook 'c-mode-hook 'helm-gtags-mode)
+(add-hook 'c++-mode-hook 'helm-gtags-mode)
+(add-hook 'asm-mode-hook 'helm-gtags-mode)
+
+(define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
+(define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
+(define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+(define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
+(define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+(define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+
+;; function-args
+(fa-config-default)
+
